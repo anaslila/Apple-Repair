@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Apple Repair</title>
     <link rel="icon" href="https://i.postimg.cc/L578fzBG/image.png">
     <link rel="apple-touch-icon" href="https://cdn.jim-nielsen.com/ios/512/apple-support-2017-06-07.png?rf=1024">
@@ -14,36 +16,31 @@
         .nav-link { margin: 0 10px; cursor: pointer; opacity: 0.8; }
         .nav-link:hover { opacity: 1; }
 
-        /* Main Dashboard */
+        /* Page Layout */
         main { max-width: 980px; margin: 0 auto; padding: 40px 20px; text-align: center; }
-        .banner { width: 100%; max-width: 600px; margin-bottom: 30px; }
-        h1 { font-size: 40px; margin-bottom: 10px; }
-        p { color: #86868b; max-width: 600px; margin: 0 auto 30px; }
-
-        /* Grid */
+        #iphone-repair-section { display: none; text-align: left; max-width: 600px; margin: 0 auto; }
+        
+        /* Dashboard Grid */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 30px; margin-top: 40px; }
-.item { 
-    cursor: pointer; 
-    transition: transform 0.3s ease; 
-}
-.item:hover { 
-    transform: scale(1.05); /* A smooth, Apple-style zoom effect */
-}.item img { 
-    width: 80px; 
-    height: 80px; 
-    display: block; 
-    margin: 0 auto 10px; 
-    object-fit: contain; /* This prevents the stretching */
-    image-rendering: -webkit-optimize-contrast; /* Keeps images sharp */
-}
+        .item { cursor: pointer; transition: transform 0.3s ease; }
+        .item:hover { transform: scale(1.05); }
+        .item img { width: 80px; height: 80px; object-fit: contain; display: block; margin: 0 auto 10px; pointer-events: none; }
         .item span { font-weight: 500; font-size: 14px; }
+
+        /* Repair Form */
+        select { width: 100%; padding: 12px; margin: 20px 0; border-radius: 8px; border: 1px solid #d2d2d7; }
+        /* Make label clickable for entire width */
+        .checkbox-label { padding: 12px 0; border-bottom: 1px solid #f2f2f7; display: flex; align-items: center; cursor: pointer; width: 100%; }
+        .checkbox-label input { margin-right: 15px; width: 20px; height: 20px; }
+        
+        .price-banner { background: #1d1d1f; color: white; padding: 20px; border-radius: 12px; text-align: center; font-size: 18px; font-weight: 600; margin-top: 30px; }
     </style>
 </head>
 <body>
 
     <header>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS81BBInr22Wsn6cQfFeK9jzGMKmcXuYWTnawLQ-hc3VA&s=10" class="logo-img">
-        <div class="nav-link" onclick="location.reload()">Repair iPhone</div>
+        <div class="nav-link" onclick="showiPhoneForm()">Repair iPhone</div>
         <div class="nav-link">Repair Mac</div>
         <div class="nav-link">Repair iPad</div>
         <div class="nav-link">Repair Watch</div>
@@ -53,37 +50,129 @@
     </header>
 
     <main id="dashboard">
-        <img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_content/apple-service-and-repair-banner.image.large_2x.png" class="banner">
+        <img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_content/apple-service-and-repair-banner.image.large_2x.png" style="width:100%; max-width:600px;">
         <h1>Apple Service and Repair</h1>
-        <p>Let’s get your product working the way it should. Tell us what’s going on, and we’ll help you find the best option for service or repair.</p>
-        
         <div class="grid">
-            <div class="item" onclick="alert('iPhone Repair Logic Here')">
+            <div class="item" onclick="showiPhoneForm()">
                 <img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-iphone-nav_2x.png">
                 <span>iPhone</span>
             </div>
-            <div class="item">
-                <img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-macbook-nav_2x.png">
-                <span>Mac Laptops</span>
-            </div>
-            <div class="item">
-                <img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-ipad-nav_2x.png">
-                <span>iPad</span>
-            </div>
-            <div class="item">
-                <img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-watch-nav_2x.png">
-                <span>Apple Watch</span>
-            </div>
-            <div class="item">
-                <img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-airpods-nav_2x.png">
-                <span>Airpods</span>
-            </div>
-            <div class="item">
-                <img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-more-nav_2x.png">
-                <span>Support</span>
-            </div>
+            <div class="item"><img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-macbook-nav_2x.png"><span>Mac Laptops</span></div>
+            <div class="item"><img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-ipad-nav_2x.png"><span>iPad</span></div>
+            <div class="item"><img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-watch-nav_2x.png"><span>Apple Watch</span></div>
+            <div class="item"><img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-airpods-nav_2x.png"><span>Airpods</span></div>
+            <div class="item"><img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-more-nav_2x.png"><span>Support</span></div>
         </div>
     </main>
 
+    <main id="iphone-repair-section">
+        <h1>iPhone Repair</h1>
+        <select id="modelSelect" onchange="calculatePrice()">
+            <option value="1.0">Select iPhone Model</option>
+            <option value="4.5">iPhone 17 Pro Max</option>
+            <option value="4.0">iPhone 17 Pro</option>
+            <option value="3.5">iPhone 17</option>
+            <option value="4.5">iPhone 16 Pro Max</option>
+            <option value="4.0">iPhone 16 Pro</option>
+            <option value="3.5">iPhone 16</option>
+            <option value="3.5">iPhone 15 Pro Max</option>
+            <option value="3.0">iPhone 15 Pro</option>
+            <option value="2.0">iPhone 15</option>
+            <option value="3.5">iPhone 14 Pro Max</option>
+            <option value="3.0">iPhone 14 Pro</option>
+            <option value="2.0">iPhone 14</option>
+            <option value="3.5">iPhone 13 Pro Max</option>
+            <option value="3.0">iPhone 13 Pro</option>
+            <option value="2.0">iPhone 13</option>
+            <option value="3.5">iPhone 12 Pro Max</option>
+            <option value="3.0">iPhone 12 Pro</option>
+            <option value="2.0">iPhone 12</option>
+            <option value="3.5">iPhone 11 Pro Max</option>
+            <option value="3.0">iPhone 11 Pro</option>
+            <option value="2.0">iPhone 11</option>
+            <option value="2.5">iPhone XS Max</option>
+            <option value="2.0">iPhone XS</option>
+            <option value="2.0">iPhone X</option>
+            <option value="2.0">iPhone 8 Plus</option>
+            <option value="2.0">iPhone 8</option>
+            <option value="1.75">iPhone 7 Plus</option>
+            <option value="1.25">iPhone 7</option>
+            <option value="1.75">iPhone 6S Plus</option>
+            <option value="1.25">iPhone 6S</option>
+            <option value="1.75">iPhone 6 Plus</option>
+            <option value="1.25">iPhone 6</option>
+        </select>
+        
+        <div class="checkbox-group" onchange="calculatePrice()">
+<label class="checkbox-label"><input type="checkbox" value="3000"> Battery Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="5000"> Display Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="2500"> Speaker Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="8000"> Motherboard Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="2000"> Charging Port Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="3000"> Back Panel Replacement</label>
+<label class="checkbox-label"><input type="checkbox" value="1500"> Volume Button Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="3500"> Rear Camera Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="3000"> Front Camera Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="5000"> Rear Camera Replacement (Broken Camera)</label>
+<label class="checkbox-label"><input type="checkbox" value="4000"> Front Camera Replacement (Broken Camera)</label>
+<label class="checkbox-label"><input type="checkbox" value="1500"> Power Button Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="1500"> Microphone Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="2000"> Earpiece Speaker Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="2500"> Loudspeaker Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="6000"> Face ID Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="4000"> Fingerprint Sensor Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="1000"> SIM Tray Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="3000"> Network Signal Issue Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="2500"> Wi-Fi Connectivity Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="2500"> Bluetooth Connectivity Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="5000"> Water Damage Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="2000"> Software Issue Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="2500"> Boot Loop Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="3000"> Overheating Issue Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="2000"> Battery Draining Issue Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="3500"> Screen Flickering Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="3000"> Touchscreen Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="4000"> Charging IC Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="1500"> Audio Jack Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="1500"> Vibration Motor Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="1000"> Flashlight Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="2000"> Proximity Sensor Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="7000"> Motherboard Component Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="5000"> Data Recovery Service</label>
+<label class="checkbox-label"><input type="checkbox" value="500"> Complete Device Diagnostics</label>
+<label class="checkbox-label"><input type="checkbox" value="500"> Device Cleaning & Maintenance</label>
+<label class="checkbox-label"><input type="checkbox" value="1500"> Camera Lens Replacement</label>
+<label class="checkbox-label"><input type="checkbox" value="3000"> Back Glass Replacement</label>
+<label class="checkbox-label"><input type="checkbox" value="4000"> Frame Repair / Replacement</label>
+<label class="checkbox-label"><input type="checkbox" value="5000"> Liquid Damage Treatment</label>
+<label class="checkbox-label"><input type="checkbox" value="4000"> No Display Issue Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="6000"> Dead Phone Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="2500"> Auto Restart Issue Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="2000"> Hanging & Lagging Issue Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="2500"> Operating System Reinstallation</label>
+<label class="checkbox-label"><input type="checkbox" value="2000"> USB Port Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="500"> Speaker Mesh Cleaning</label>
+<label class="checkbox-label"><input type="checkbox" value="2000"> Ear Speaker Replacement</label>
+<label class="checkbox-label"><input type="checkbox" value="1500"> Battery Connector Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="1500"> Display Connector Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="1000"> Camera Glass Replacement</label>
+<label class="checkbox-label"><input type="checkbox" value="2000"> SIM Detection Issue Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="1500"> Memory Card Slot Repair</label>
+<label class="checkbox-label"><input type="checkbox" value="2000"> Charging Pin Replacement</label>        </div>
+        <div class="price-banner" id="priceDisplay">Total Estimate: ₹0.00</div>
+    </main>
+
+    <script>
+        function showiPhoneForm() {
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('iphone-repair-section').style.display = 'block';
+        }
+        function calculatePrice() {
+            let mult = parseFloat(document.getElementById('modelSelect').value);
+            let total = 0;
+            document.querySelectorAll('.checkbox-group input:checked').forEach(cb => { total += parseFloat(cb.value); });
+            document.getElementById('priceDisplay').innerText = "Total Estimate: ₹" + (total * mult).toFixed(2);
+        }
+    </script>
 </body>
 </html>
