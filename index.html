@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Apple Repair</title>
+    <link rel="icon" href="https://i.postimg.cc/L578fzBG/image.png">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/0/747.png">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif; color: #1d1d1f; margin: 0; background-color: #fff; }
+        
+        /* Header */
+        header { display: flex; justify-content: center; align-items: center; padding: 15px; background: #000; color: #f5f5f5; font-size: 11px; }
+        .logo-img { width: 18px; margin-right: 20px; }
+        .nav-link { margin: 0 10px; cursor: pointer; opacity: 0.8; }
+        .nav-link:hover { opacity: 1; }
+
+        /* Main Dashboard */
+        main { max-width: 980px; margin: 0 auto; padding: 40px 20px; text-align: center; }
+        .banner { width: 100%; max-width: 600px; margin-bottom: 30px; }
+        h1 { font-size: 40px; margin-bottom: 10px; }
+        p { color: #86868b; max-width: 600px; margin: 0 auto 30px; }
+
+        /* Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 30px; margin-top: 40px; }
+.item { 
+    cursor: pointer; 
+    transition: transform 0.3s ease; 
+}
+.item:hover { 
+    transform: scale(1.05); /* A smooth, Apple-style zoom effect */
+}.item img { 
+    width: 80px; 
+    height: 80px; 
+    display: block; 
+    margin: 0 auto 10px; 
+    object-fit: contain; /* This prevents the stretching */
+    image-rendering: -webkit-optimize-contrast; /* Keeps images sharp */
+}
+        .item span { font-weight: 500; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS81BBInr22Wsn6cQfFeK9jzGMKmcXuYWTnawLQ-hc3VA&s=10" class="logo-img">
+        <div class="nav-link" onclick="location.reload()">Repair iPhone</div>
+        <div class="nav-link">Repair Mac</div>
+        <div class="nav-link">Repair iPad</div>
+        <div class="nav-link">Repair Watch</div>
+        <div class="nav-link">Repair Airpods</div>
+        <div class="nav-link">OS</div>
+        <div class="nav-link">Support</div>
+    </header>
+
+    <main id="dashboard">
+        <img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_content/apple-service-and-repair-banner.image.large_2x.png" class="banner">
+        <h1>Apple Service and Repair</h1>
+        <p>Let’s get your product working the way it should. Tell us what’s going on, and we’ll help you find the best option for service or repair.</p>
+        
+        <div class="grid">
+            <div class="item" onclick="alert('iPhone Repair Logic Here')">
+                <img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-iphone-nav_2x.png">
+                <span>iPhone</span>
+            </div>
+            <div class="item">
+                <img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-macbook-nav_2x.png">
+                <span>Mac Laptops</span>
+            </div>
+            <div class="item">
+                <img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-ipad-nav_2x.png">
+                <span>iPad</span>
+            </div>
+            <div class="item">
+                <img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-watch-nav_2x.png">
+                <span>Apple Watch</span>
+            </div>
+            <div class="item">
+                <img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-airpods-nav_2x.png">
+                <span>Airpods</span>
+            </div>
+            <div class="item">
+                <img src="https://support.apple.com/content/dam/edam/applecare/images/en_US/psp/psp_navicons/image-grid-more-nav_2x.png">
+                <span>Support</span>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
